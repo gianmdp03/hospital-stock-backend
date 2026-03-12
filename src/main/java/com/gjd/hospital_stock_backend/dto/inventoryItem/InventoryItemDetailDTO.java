@@ -1,0 +1,6 @@
+package com.gjd.hospital_stock_backend.dto.inventoryItem;
+
+import java.time.LocalDate;
+
+public record InventoryItemDetailDTO(Long id, ProductListDTO productListDTO, int stock, LocalDate expireDate) {
+}
