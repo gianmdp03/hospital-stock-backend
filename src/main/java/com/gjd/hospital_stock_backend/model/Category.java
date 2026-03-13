@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Audited
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -29,8 +31,7 @@ public class Category {
     )
     private List<Product> products = new ArrayList<>();
 
-    public Category(String name, List<Product> products){
+    public Category(String name){
         this.name = name;
-        this.products = products;
     }
 }
