@@ -12,6 +12,8 @@ import com.gjd.hospital_stock_backend.repository.ProductRepository;
 import com.gjd.hospital_stock_backend.service.InventoryItemService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.NotFound;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,5 +46,18 @@ public class InventoryItemServiceImpl implements InventoryItemService {
         return inventoryItemMapper.toDetailDTO(inventoryItem);
     }
 
-    
+    @Override
+    public Page<InventoryItemDetailDTO> listInventoryItems(Pageable pageable) {
+        Page<InventoryItem> page = inventoryItemRepository.findAll(pageable);
+        if(page.isEmpty()){
+            return Page.empty();
+        }
+
+        return page.map(inventoryItemMapper::toDetailDTO);
+    }
+
+    @Override
+    public Page<InventoryItemDetailDTO> searchByProductName(String name, Pageable pageable) {
+        Page<InventoryItem> items = inventoryItemRepository.
+    }
 }
