@@ -18,18 +18,17 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
     @Column(nullable = false)
-    private Boolean read;
+    private boolean read = false;
 
     @Column(nullable = false)
     private Instant date;
 
-    public Notification(String message, Boolean read, Instant date) {
+    public Notification(String message, Instant date) {
         this.message = message;
-        this.read = read;
         this.date = date;
     }
     

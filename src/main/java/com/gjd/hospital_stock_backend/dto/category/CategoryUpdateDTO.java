@@ -1,4 +1,6 @@
 package com.gjd.hospital_stock_backend.dto.category;
 
-public class CategoryUpdateDTO {
+import java.util.List;
+
+public record CategoryUpdateDTO (String name, List<Long> productIds){
 }

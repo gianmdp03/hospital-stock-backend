@@ -1,4 +1,10 @@
 package com.gjd.hospital_stock_backend.dto.category;
 
-public record CategoryRequestDTO() {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
+import java.util.List;
+
+public record CategoryRequestDTO(@NotBlank String name,
+                                 @NotEmpty List<Long> productIds) {
 }

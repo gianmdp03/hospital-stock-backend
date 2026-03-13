@@ -1,4 +1,8 @@
 package com.gjd.hospital_stock_backend.dto.product;
 
-public record ProductDetailDTO() {
+import com.gjd.hospital_stock_backend.dto.category.CategoryListDTO;
+
+import java.util.List;
+
+public record ProductDetailDTO(Long id, String name, List<CategoryListDTO> categories, int stock) {
 }

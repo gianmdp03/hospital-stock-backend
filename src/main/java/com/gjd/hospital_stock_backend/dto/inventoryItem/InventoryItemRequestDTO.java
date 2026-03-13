@@ -7,4 +7,4 @@ import java.time.LocalDate;
 
 public record InventoryItemRequestDTO(@NotNull Long productId,
                                       @NotNull int stock,
-                                      @NotNull  @Future LocalDate expireDate) {}
+                                      @NotNull @Future LocalDate expireDate) {}
