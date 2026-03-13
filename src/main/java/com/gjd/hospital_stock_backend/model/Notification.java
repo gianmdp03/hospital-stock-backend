@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "notifications")
@@ -31,5 +32,17 @@ public class Notification {
         this.message = message;
         this.date = date;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if (!(o instanceof Notification that)) return false;
+        return this.message != null && this.message.equals(that.getMessage())
+                && this.date!=null && this.date.equals(that.getDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(message, date);
+    }
 }

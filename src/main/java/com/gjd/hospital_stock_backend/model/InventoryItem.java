@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "inventoryitems")
@@ -34,5 +35,22 @@ public class InventoryItem {
         this.product = product;
         this.stock = stock;
         this.expireDate=expireDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if (!(o instanceof InventoryItem that)) return false;
+
+        InventoryItem other = (InventoryItem) o;
+        return this.product != null &&
+                this.product.equals(other.getProduct()) &&
+                this.expireDate != null &&
+                this.expireDate.equals(other.getExpireDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product, expireDate);
     }
 }
