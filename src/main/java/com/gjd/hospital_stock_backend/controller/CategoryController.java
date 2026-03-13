@@ -1,13 +1,13 @@
 package com.gjd.hospital_stock_backend.controller;
 
-import com.gjd.hospital_stock_backend.service.NotificationService;
+import com.gjd.hospital_stock_backend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/notifications")
+@RequestMapping("/api/categories")
 @RequiredArgsConstructor
-public class NotificationController {
-    private final NotificationService notificationService;
+public class CategoryController {
+    private final CategoryService categoryService;
 }
