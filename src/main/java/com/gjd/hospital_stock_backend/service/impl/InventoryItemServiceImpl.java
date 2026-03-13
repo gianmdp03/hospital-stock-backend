@@ -2,6 +2,7 @@ package com.gjd.hospital_stock_backend.service.Impl;
 
 import com.gjd.hospital_stock_backend.dto.inventoryItem.InventoryItemDetailDTO;
 import com.gjd.hospital_stock_backend.dto.inventoryItem.InventoryItemRequestDTO;
+import com.gjd.hospital_stock_backend.dto.inventoryItem.InventoryItemUpdateDTO;
 import com.gjd.hospital_stock_backend.exception.NotFoundException;
 import com.gjd.hospital_stock_backend.mapper.InventoryItemMapper;
 import com.gjd.hospital_stock_backend.model.InventoryItem;
@@ -32,5 +33,16 @@ public class InventoryItemServiceImpl implements InventoryItemService {
         return inventoryItemMapper.toDetailDTO(inventoryItem);
 
     }
+
+    @Override
+    @Transactional
+    public InventoryItemDetailDTO updateInventoryItem(Long id, InventoryItemUpdateDTO dto){
+        InventoryItem  inventoryItem = inventoryItemRepository.findById(id)
+                .orElseThrow(()-> new NotFoundException("Inventory Item ID does not exist"));
+        inventoryItemMapper.updateEntityFromDto(dto,inventoryItem);
+        inventoryItemRepository.save(inventoryItem);
+        return inventoryItemMapper.toDetailDTO(inventoryItem);
+    }
+
     
 }
