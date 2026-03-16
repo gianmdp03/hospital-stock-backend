@@ -11,7 +11,6 @@ import com.gjd.hospital_stock_backend.repository.InventoryItemRepository;
 import com.gjd.hospital_stock_backend.repository.ProductRepository;
 import com.gjd.hospital_stock_backend.service.InventoryItemService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.NotFound;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 
     @Override
     public InventoryItemDetailDTO addInventoryItem(InventoryItemRequestDTO dto) {
-        Product product = productRepository.findByIdAndDisabledTrue(dto.productId())
+        Product product = productRepository.findByIdAndDisabledFalse(dto.productId())
                 .orElseThrow(()-> new NotFoundException("Product ID does not exist"));
         InventoryItem inventoryItem = inventoryItemMapper.toEntity(dto);
         inventoryItem.setProduct(product);
@@ -75,5 +74,4 @@ public class InventoryItemServiceImpl implements InventoryItemService {
         inventoryItemRepository.delete(inventoryItem);
     }
 
-    
 }
