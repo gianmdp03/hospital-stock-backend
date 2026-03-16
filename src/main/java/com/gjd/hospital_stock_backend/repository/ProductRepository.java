@@ -11,10 +11,10 @@ import java.util.Set;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Optional<Product>  findByIdAndDisabledTrue(Long id );
-    Set<Product> findAllByIdInAndEnabledTrue(Iterable<Long> ids);
+    Optional<Product>  findByIdAndDisabledFalse(Long id );
+    Set<Product> findAllByIdInAndDisabledFalse(Iterable<Long> ids);
     Optional<Product> findByName(String name);
-    Page<Product> findByDisabledTrue(Pageable pageable);
+    Page<Product> findByDisabledFalse(Pageable pageable);
 
     Page<Product> findByNameContainingIgnoreCaseAndDisabledTrue(String name, Pageable pageable);
 
