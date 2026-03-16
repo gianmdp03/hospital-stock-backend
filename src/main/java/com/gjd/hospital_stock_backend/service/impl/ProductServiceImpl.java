@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
             throw new NotFoundException("List is empty");
         if(optionalProduct.isPresent()){
             Product existingProduct = optionalProduct.get();
-            existingProduct.setDisabled(true);
+            existingProduct.setDisabled(false);
             existingProduct.setCategories(categories);
             existingProduct = productRepository.save(existingProduct);
             return productMapper.toDetailDto(existingProduct);
@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void deleteProduct(Long productId) {
         Product product = productRepository.findByIdAndDisabledTrue(productId).orElseThrow(()->new NotFoundException("Product ID does not exist"));
-        product.setDisabled(false);
+        product.setDisabled(true);
         productRepository.save(product);
     }
 }
